@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  const [profile, setProfile] = useState({
+    name: "Lamphrangmi",
+    age: 20,
+    job: "Junior Software engineer",
+    company: "startup",
+  });
+
+function handleChange(e) {
+  setProfile({
+    ...profile,
+    name: e.target.value,
+  })
 }
 
-export default App;
+  return (
+    <>
+      <label>Enter your name:
+        <input value={profile.name} onChange={handleChange} />
+      </label>
+
+      <h2>Hello my name is {profile.name}. I'm {profile.age} years old and I'm working as a {profile.job}</h2>
+    </>
+  )
+
+}
